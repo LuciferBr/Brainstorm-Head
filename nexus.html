@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#00ffcc" />
+    <meta
+      name="description"
+      content="Explore the Nexus, the brainstorming heart of Brainstorm 2070."
+    />
+    <meta name="keywords" content="Brainstorm, Nexus, brainstorming, quantum ideas, futuristic management" />
+    <meta name="author" content="Brainstorm Collective" />
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <!-- Google Fonts: Roboto for sleek typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <!-- Custom Styles -->
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: linear-gradient(135deg, #0a1422 0%, #1e2a44 100%);
+        color: #f0f0f5;
+        font-family: 'Roboto', Arial, sans-serif;
+        overflow-x: hidden;
+        line-height: 1.5;
+      }
+
+      /* Loader */
+      #loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(10, 20, 34, 0.95);
+        z-index: 9999;
+        animation: fadeOut 0.5s ease-in-out 2s forwards;
+      }
+      .loader {
+        font-size: clamp(1rem, 3vw, 1.5rem);
+        color: #00ffcc;
+        text-shadow: 0 0 10px #00ffcc, 0 0 20px #ff007a;
+        animation: pulse 1.5s infinite;
+      }
+
+      /* App Structure */
+      .App-2070s {
+        min-height: 100vh;
+        padding: clamp(10px, 2vw, 20px);
+      }
+      .App-header {
+        text-align: center;
+        margin-bottom: clamp(20px, 4vw, 40px);
+      }
+      .App-logo-holo {
+        width: clamp(60px, 10vw, 100px);
+        animation: spin 10s linear infinite;
+      }
+      .App-title-neon {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        color: #00ffcc;
+        text-shadow: 0 0 10px #00ffcc, 0 0 20px #ff007a;
+        margin: 10px 0;
+      }
+      .AppSubtitle-cyber {
+        font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+        color: #f0f0f5;
+        opacity: 0.8;
+        margin: 0;
+      }
+      .App-nav-cyber {
+        margin-top: clamp(10px, 2vw, 20px);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+      .App-nav-link {
+        color: #00ffcc;
+        text-decoration: none;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        margin: 0 10px;
+        padding: 5px 0;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      .App-nav-link::before { /* Upline */
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #00ffcc;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      .App-nav-link::after { /* Underline */
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #00ffcc;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s ease;
+      }
+      .App-nav-link:hover {
+        color: #ff007a;
+        text-shadow: 0 0 5px #ff007a;
+      }
+      .App-nav-link:hover::before,
+      .App-nav-link:hover::after {
+        transform: scaleX(1);
+      }
+      .App-nav-link.active {
+        color: #ff007a;
+        text-shadow: 0 0 10px #ff007a;
+      }
+      .App-nav-link.active::before,
+      .App-nav-link.active::after {
+        background: #ff007a;
+        transform: scaleX(1);
+      }
+
+      /* Main Content */
+      .App-main-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: clamp(20px, 4vw, 40px);
+      }
+      h2 {
+        color: #00ffcc;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        text-shadow: 0 0 5px #00ffcc;
+        text-align: center;
+      }
+      p {
+        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      /* Animations */
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.1); opacity: 1; }
+      }
+      @keyframes fadeOut {
+        to { opacity: 0; visibility: hidden; }
+      }
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      /* Media Queries for Responsiveness */
+      @media (max-width: 768px) { /* Tablets and smaller */
+        .App-nav-cyber {
+          flex-direction: column;
+          align-items: center;
+        }
+        .App-nav-link {
+          margin: 5px 0;
+          padding: 8px 0;
+        }
+        .App-logo-holo {
+          width: clamp(50px, 15vw, 80px);
+        }
+      }
+
+      @media (max-width: 480px) { /* Smartphones */
+        .App-title-neon {
+          font-size: clamp(1.2rem, 6vw, 1.8rem);
+        }
+        .AppSubtitle-cyber {
+          font-size: clamp(0.7rem, 3vw, 1rem);
+        }
+        .App-nav-link::before,
+        .App-nav-link::after {
+          height: 1px;
+        }
+      }
+
+      @media (min-width: 1920px) { /* Large screens like TVs */
+        .App-main-grid {
+          max-width: 1600px;
+        }
+        .App-title-neon {
+          font-size: 3rem;
+        }
+        .App-nav-link {
+          font-size: 1.3rem;
+          padding: 10px 0;
+        }
+        .App-nav-link::before,
+        .App-nav-link::after {
+          height: 3px;
+        }
+      }
+    </style>
+    <title>Brainstorm - Nexus</title>
+  </head>
+  <body>
+    <div id="loading">
+      <span class="loader">Initializing Brainstorm ...</span>
+    </div>
+    <div class="App App-2070s">
+      <header class="App-header">
+        <img src="logo.svg" class="App-logo App-logo-holo" alt="Brainstorm 2070s logo" />
+        <h1 class="App-title-neon">Brainstorm</h1>
+        <p class="AppSubtitle-cyber">
+          Neural hub for staff, events, and quantum ideas | edition
+        </p>
+        <nav class="App-nav-cyber">
+          <a href="index.html" class="App-nav-link">Home</a>
+          <a href="core.html" class="App-nav-link">Core</a>
+          <a href="about.html" class="App-nav-link">About</a>
+          <a href="nexus.html" class="App-nav-link active">Nexus</a>
+          <a href="luciferbofl.html" class="App-nav-link">LuciferBOFL</a>
+          <a href="igc.html" class="App-nav-link">IGC</a>
+          <a href="matrix.html" class="App-nav-link">Matrix</a>
+          <a href="grid.html" class="App-nav-link">Grid</a>
+          <a href="portal.html" class="App-nav-link">Portal</a>
+          <a href="quantum.html" class="App-nav-link">Quantum</a>
+          <a href="staff.html" class="App-nav-link">Staff</a>
+          <a href="events.html" class="App-nav-link">Events</a>
+          <a href="tools.html" class="App-nav-link">Tools</a>
+          <a href="ibo.html" class="App-nav-link">IBO</a>
+        </nav>
+      </header>
+      <main class="App-main-grid">
+        <h2>Nexus (Brainstorming)</h2>
+        <p>Connect and explore quantum ideas in the Nexus, the brainstorming heart of Brainstorm. This is where creativity meets innovation, allowing you to collaborate, ideate, and push the boundaries of futuristic thought within a dynamic, cosmic environment.</p>
+      </main>
+    </div>
+  </body>
+</html>
